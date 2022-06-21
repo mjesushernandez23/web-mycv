@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import { RecoilRoot } from "recoil";
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -6,6 +7,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import theme from "@styles/theme";
 import createEmotionCache from "@utils/createEmotionCache";
 import "@styles/globals.css";
+import Layout from "@components/layout";
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -23,7 +25,11 @@ function MyApp(props: MyAppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <RecoilRoot>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </RecoilRoot>
       </ThemeProvider>
     </CacheProvider>
   );
