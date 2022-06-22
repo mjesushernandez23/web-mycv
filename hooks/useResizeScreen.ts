@@ -17,7 +17,7 @@ const queriesRanges: PropsQueriesRanges[] = [
 ];
 
 export default function useResizeScreen(): void {
-  const setScreenRisize = useSetRecoilState(sizeScreenAtom);
+  const setScreenResized = useSetRecoilState(sizeScreenAtom);
   /* eslint-disable */
   useEffect(() => {
     handleScreen();
@@ -31,6 +31,6 @@ export default function useResizeScreen(): void {
   const handleScreen = (): void => {
     const withSize: number = window.innerWidth;
     const result = queriesRanges.find(({ value }) => value >= withSize);
-    setScreenRisize(result?.id ?? null);
+    setScreenResized(result?.id ?? null);
   };
 }

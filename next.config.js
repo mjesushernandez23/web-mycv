@@ -3,6 +3,9 @@
 const nextConfig = {
   reactStrictMode: true,
   assetPrefix: process.env.NODE_ENV === "production" ? "." : undefined,
+  env: {
+    URL_BACKEND: process.env.URL_BACKEND,
+  },
 };
 
 module.exports = nextConfig;
