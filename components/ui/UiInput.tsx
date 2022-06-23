@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import TextField, { BaseTextFieldProps } from "@mui/material/TextField";
 import { useController, UseControllerProps } from "react-hook-form";
 
@@ -12,29 +13,41 @@ type conflictsTypes =
   | "onBlur"
   | "name";
 
-interface Props {
+interface Props
+  extends Omit<UseControllerProps, "defaultValue" | "shouldUnregister">,
+    Omit<BaseTextFieldProps, conflictsTypes> {
   label: string;
   placeholder: string;
-  controllerProps: UseControllerProps;
-  textFieldProps?: Omit<BaseTextFieldProps, conflictsTypes>;
 }
 
 const UiInput = (props: Props) => {
-  const { label, placeholder, controllerProps, textFieldProps } = props;
+  const { name, control, rules, placeholder, label, ...textFieldProps } = props;
 
   const {
-    field: { ref, value, ...restField },
+    field: { ref, onChange, ...restField },
     fieldState: { error },
-  } = useController(controllerProps);
+  } = useController({ name, control, rules, defaultValue: "" });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { value },
+    } = e;
+
+    console.log(value);
+  };
+
+  const isRequerid = rules !== undefined;
 
   return (
     <TextField
-      label={label}
+      label={`${label}${isRequerid ? "*" : ""}`}
       placeholder={placeholder}
-      value={value ?? ""}
       inputRef={ref}
       error={error !== undefined}
-      helperText={error?.message}
+      onChange={handleChange}
+      helperText={
+        isRequerid && error?.type === "required" ? `El campo es obligatorio` : error?.message
+      }
       {...restField}
       {...textFieldProps}
     />

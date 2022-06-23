@@ -27,6 +27,7 @@ const navItems = [
   { route: "", label: "Inicio" },
   { route: "about", label: "Acerca de mi" },
   { route: "register", label: "Registro" },
+  { route: "test-register", label: "Test" },
 ];
 
 const Layout = (props: Props) => {

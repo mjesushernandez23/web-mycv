@@ -1,16 +1,10 @@
 export interface RegisterUserProps {
-  company: string;
   email: string;
+  password: string;
   firstName: string;
   lastName: string;
-  numberPhone: string;
-  password: string;
-  username: string;
-}
-
-export interface RegisterResponseProps {
-  jwt: string;
-  user: User;
+  phoneNumber: string;
+  company: string;
 }
 
 export interface User {

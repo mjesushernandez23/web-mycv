@@ -25,7 +25,8 @@
       "@utils/*": ["utils/*"],
       "@interfaces/*": ["utils/interfaces/*"],
       "@hooks/*": ["hooks/*"],
-      "@api/*": ["api/*"]
+      "@api/*": ["api/*"],
+      "@validations/*": ["utils/validations/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
