@@ -27,7 +27,7 @@ const navItems = [
   { route: "", label: "Inicio" },
   { route: "about", label: "Acerca de mi" },
   { route: "register", label: "Registro" },
-  { route: "test-form", label: "test" },
+  { route: "login", label: "Acceso" },
 ];
 
 const Layout = (props: Props) => {

@@ -24,9 +24,9 @@ const FormRegister = () => {
     ...registerValidation,
     onSubmit: async payload => {
       const response = await axiosPublic({
-        endPoint: "auth/local/register",
+        endPoint: "/auth/local/register",
         method: "post",
-        data: payload,
+        payload,
       });
       console.log(response);
     },
