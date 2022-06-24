@@ -9,11 +9,11 @@ interface AxiosRequestProps extends Omit<AxiosRequestConfig, "headers" | "baseUr
 
 const URL_BASE = process.env.URL_BACKEND;
 
-export default function usePublicRequest() {
+export default function useAxios() {
   const setLoading = useSetRecoilState(isLoadingAtom);
   const setMessageError = useSetRecoilState(messageAlertAtom);
 
-  const axiosRequest = async (props: AxiosRequestProps) => {
+  const axiosPublic = async (props: AxiosRequestProps) => {
     const { endPoint, method = "get", ...restProps } = props;
 
     //    setLoading(true);
@@ -32,6 +32,6 @@ export default function usePublicRequest() {
   };
 
   return {
-    axiosRequest,
+    axiosPublic,
   };
 }

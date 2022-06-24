@@ -1,30 +1,44 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
+import TextField, { BaseTextFieldProps } from "@mui/material/TextField";
 import { FormikHandlers } from "formik";
 
-interface Props {
-  name: string;
-  value: string;
+type conflictsTypes =
+  | "value"
+  | "inputRef"
+  | "error"
+  | "helperText"
+  | "label"
+  | "placeholder"
+  | "name";
+
+export interface MyInputBaseProps {
   label: string;
   placeholder: string;
+}
+interface Props extends Omit<BaseTextFieldProps, conflictsTypes>, MyInputBaseProps {
+  name: string;
+  error: string;
+  value: string;
   handleChange: FormikHandlers["handleChange"];
   handleBlur: FormikHandlers["handleBlur"];
-  error?: string;
 }
 
 const MyInput = (props: Props) => {
-  const { name, value, label, placeholder, error, handleChange, handleBlur } = props;
-  console.log("er",error)
+  const { name, value, placeholder, label, handleChange, handleBlur, error, ...propsTextField } =
+    props;
+
+  const trimValue = (v: string) => handleChange;
 
   return (
     <TextField
-      value={value}
       name={name}
       label={label}
       placeholder={placeholder}
       onChange={handleChange}
       onBlur={handleBlur}
+      value={value}
       error={!!error}
+      helperText={error}
+      {...propsTextField}
     />
   );
 };

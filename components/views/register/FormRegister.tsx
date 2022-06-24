@@ -1,102 +1,50 @@
-import { useForm } from "react-hook-form";
+import { useFormik } from "formik";
+import MyInput, { MyInputBaseProps } from "@components/ui/MyInput";
+import Button from "@mui/material/Button";
+import { nameFields, registerValidation } from "@utils/validations";
+import useAxios from "@hooks/useAxios";
 
-import UiInput from "@components/ui/UiInput";
-import { Button } from "@mui/material";
-import useRequestApi from "@hooks/usePublicRequest";
+interface InputsProps extends MyInputBaseProps {
+  name: nameFields;
+  type?: string;
+}
+
+const inputsProps: InputsProps[] = [
+  { label: "Correo electrónico", placeholder: "user@example.com", name: "email", type: "email" },
+  { label: "Nombre", placeholder: "Juan", name: "firstName" },
+  { label: "Apellido", placeholder: "Perez", name: "lastName" },
+  { label: "Compañía", placeholder: "Microsoft", name: "company" },
+  { label: "Numero de teléfono", placeholder: "5555555555", name: "phoneNumber", type: "tel" },
+  { label: "Contraseña", placeholder: "*********", name: "password", type: "password" },
+];
 
 const FormRegister = () => {
-  const { control, handleSubmit } = useForm();
-  const { axiosRequest } = useRequestApi();
-
-  const submitForm = async (values: {}) => {
-    console.log(values);
-  };
+  const { axiosPublic } = useAxios();
+  const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
+    ...registerValidation,
+    onSubmit: async payload => {
+      const response = await axiosPublic({
+        endPoint: "auth/local/register",
+        method: "post",
+        data: payload,
+      });
+      console.log(response);
+    },
+  });
 
   return (
-    <form onSubmit={handleSubmit(submitForm)} className="grid grid-cols-2 gap-4 mt-6 justify-end">
-      <UiInput
-        label="Correo electrónico"
-        placeholder={`"user@example.com"`}
-        name="email"
-        type="email"
-        control={control}
-        rules={{
-          required: true,
-          pattern: {
-            value: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi,
-            message: "Email no es valido",
-          },
-        }}
-      />
-      <UiInput
-        label="Nombre"
-        placeholder={`"Juan"`}
-        name="firstName"
-        control={control}
-        rules={{
-          required: true,
-          minLength: {
-            value: 3,
-            message: "El nombre debe tener al menos 3 caracteres",
-          },
-        }}
-      />
-      <UiInput
-        label="Apellido"
-        placeholder={`"Perez"`}
-        name="lastName"
-        control={control}
-        rules={{
-          required: true,
-          minLength: {
-            value: 3,
-            message: "El apellido debe tener al menos 3 caracteres",
-          },
-        }}
-      />
-      <UiInput
-        label="Compañía"
-        placeholder={`"Microsoft"`}
-        name="company"
-        control={control}
-        rules={{
-          required: true,
-          minLength: {
-            value: 3,
-            message: "La compañía debe tener al menos 3 caracteres",
-          },
-        }}
-      />
-      <UiInput
-        label="Numero de teléfono"
-        placeholder={`Tu numero de teléfono`}
-        name="numberPhone"
-        control={control}
-        rules={{
-          required: true,
-          minLength: {
-            value: 10,
-            message: "Debe tener al menos 10 números",
-          },
-          maxLength: {
-            value: 13,
-            message: "Debe tener máximo 13 números",
-          },
-        }}
-      />
-      <UiInput
-        label="Contraseña"
-        placeholder="*********"
-        name="password"
-        control={control}
-        rules={{
-          required: true,
-          minLength: {
-            value: 8,
-            message: "La contraseña debe tener al menos 8 caracteres",
-          },
-        }}
-      />
+    <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 mt-6 justify-end">
+      {inputsProps.map(({ name, ...restProps }, index) => (
+        <MyInput
+          key={`input${index}`}
+          value={values[name]}
+          error={errors[name] ?? ""}
+          name={name}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          {...restProps}
+        />
+      ))}
       <div className="col-span-2 flex justify-end">
         <Button className="w-fit h-fit" size="large" variant="contained" type="submit">
           Enviar
