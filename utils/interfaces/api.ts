@@ -15,15 +15,18 @@ export interface User {
   username: string;
 }
 
-export interface ErrorResponseProps {
-  data: {
-    statusCode: number;
-    error: string;
-    message: MessageErrorProps[];
-  };
+export interface ErrorResponseErrorProps {
+  statusCode: number;
+  error: string;
+  message: Datum[];
+  data: Datum[];
 }
 
-export interface MessageErrorProps {
+export interface Datum {
+  messages: Message[];
+}
+
+export interface Message {
   id: string;
   message: string;
 }

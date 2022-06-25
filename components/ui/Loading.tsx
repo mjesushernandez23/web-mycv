@@ -1,7 +1,11 @@
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { isLoadingAtom, messageAlertAtom } from "@store/uiAtoms";
 import Backdrop from "@mui/material/Backdrop";
+import IconButton from "@mui/material/IconButton";
 import CircularProgress from "@mui/material/CircularProgress";
-import { messageAlertAtom } from "@store/ui";
-import { useRecoilValue } from "recoil";
+import Alert from "@mui/material/Alert";
+import CloseIcon from "@mui/icons-material/Close";
+import getVariantMessage from "@utils/getVariantMessage";
 
 interface Props {
   show: boolean;
@@ -9,11 +13,38 @@ interface Props {
 
 const Loading = (props: Props) => {
   const { show } = props;
-  const message = useRecoilValue(messageAlertAtom);
-  console.log("me", message);
+  const setLoading = useSetRecoilState(isLoadingAtom);
+  const [messageError, setMessageError] = useRecoilState(messageAlertAtom);
+  const { message, statusCode } = messageError;
+
+  const handleCleanMessage = (): void => {
+    setMessageError({ message: "", statusCode: 0 });
+    setLoading(false);
+  };
+
   return (
     <Backdrop open={show}>
-      <CircularProgress color="inherit" />
+      {statusCode ? (
+        <Alert
+        variant="filled"
+        className="w-1/3"
+          action={
+            <IconButton
+              onClick={handleCleanMessage}
+              aria-label="close"
+              color="inherit"
+              size="small"
+            >
+              <CloseIcon />
+            </IconButton>
+          }
+          severity={getVariantMessage(statusCode) ?? "info"}
+        >
+          {message}
+        </Alert>
+      ) : (
+        <CircularProgress color="inherit" />
+      )}
     </Backdrop>
   );
 };

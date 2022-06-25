@@ -16,7 +16,7 @@ import Link from "next/link";
 import { NoSsr } from "@mui/material";
 import Loading from "@components/ui/Loading";
 import { useRecoilValue } from "recoil";
-import { isLoadingAtom } from "@store/ui";
+import { isLoadingAtom } from "@store/uiAtoms";
 
 interface Props {
   children: JSX.Element;

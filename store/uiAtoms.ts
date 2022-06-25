@@ -1,6 +1,10 @@
-import { MessageErrorProps } from "@utils/interfaces/api";
 import { ScreenSizesType } from "@utils/interfaces/ui";
 import { atom } from "recoil";
+
+export interface MessageErrorAtomProps {
+  statusCode: number;
+  message: string;
+}
 
 export const sizeScreenAtom = atom<ScreenSizesType>({
   key: "sizeScreenAtom",
@@ -9,10 +13,13 @@ export const sizeScreenAtom = atom<ScreenSizesType>({
 
 export const isLoadingAtom = atom<boolean>({
   key: "isLoadingAtom",
-  default: false,
+  default: true,
 });
 
-export const messageAlertAtom = atom<null | MessageErrorProps[]>({
+export const messageAlertAtom = atom<MessageErrorAtomProps>({
   key: "messageAlertAtom",
-  default: null,
+  default: {
+    message: "prueba",
+    statusCode: 500,
+  },
 });

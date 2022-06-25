@@ -1,12 +1,13 @@
-import axios, { AxiosRequestConfig, AxiosError } from "axios";
-import { isLoadingAtom, messageAlertAtom } from "@store/ui";
+import axios, { AxiosRequestConfig } from "axios";
+import { isLoadingAtom, messageAlertAtom } from "@store/uiAtoms";
 import { useSetRecoilState } from "recoil";
-import { ErrorResponseProps } from "@utils/interfaces/api";
+import { ErrorResponseErrorProps } from "@utils/interfaces/api";
 
 interface AxiosRequestProps
   extends Omit<AxiosRequestConfig, "headers" | "baseUrl" | "url" | "data"> {
   endPoint: string;
   payload?: {} | [];
+  message?: string;
 }
 
 const URL_BASE = process.env.URL_BACKEND;
@@ -16,20 +17,22 @@ export default function useAxios() {
   const setMessageError = useSetRecoilState(messageAlertAtom);
 
   const axiosPublic = async (props: AxiosRequestProps) => {
-    const { endPoint, method = "get", payload } = props;
-
-    //    setLoading(true);
+    const { endPoint, method = "get", payload, message } = props;
+    setLoading(true);
     const url = `${URL_BASE}${endPoint}`;
     try {
       const { data } = await axios({ url, method, data: payload });
-      console.log(data);
+      message !== undefined
+        ? (setLoading(true), setMessageError({ statusCode: 200, message }))
+        : setLoading(false);
       return data;
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        const error = err.response?.data as AxiosError;
-        console.log("axiosErro", error);
+        const { data, statusCode } = err.response?.data as ErrorResponseErrorProps;
+        const message = data[0].messages[0].message;
+        setMessageError({ message, statusCode });
       } else {
-        console.log("errorSimple", err);
+        setMessageError({ message: "Error desconocido", statusCode: 0 });
       }
       return null;
     }

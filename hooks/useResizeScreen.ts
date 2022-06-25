@@ -1,6 +1,6 @@
 import { ScreenSizesType } from "@utils/interfaces/ui";
 import { useSetRecoilState } from "recoil";
-import { sizeScreenAtom } from "@store/ui";
+import { sizeScreenAtom } from "@store/uiAtoms";
 import { useEffect } from "react";
 
 export interface PropsQueriesRanges {
