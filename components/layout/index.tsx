@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import MenuIcon from "@mui/icons-material/Menu";
-import Loading from "./Loading";
+
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { NoSsr } from "@mui/material";
@@ -14,6 +14,13 @@ import { useRecoilValue } from "recoil";
 import { isLoadingAtom } from "@store/uiAtoms";
 import { userInfoAtom } from "@store/userAtoms";
 import { LinksDesktop, LinksMobile } from "./Links";
+import useRememberSession from "@hooks/useRememberSession";
+import dynamic from "next/dynamic";
+
+const Loading = dynamic(() => import("./Loading"), {
+  ssr: false,
+  suspense: true,
+});
 
 interface Props {
   children: JSX.Element;
@@ -30,6 +37,9 @@ const navItems = [
 
 const Layout = (props: Props) => {
   const { children, window } = props;
+
+  useRememberSession();
+
   const userInfo = useRecoilValue(userInfoAtom);
   const isLoading = useRecoilValue(isLoadingAtom);
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
@@ -108,7 +118,9 @@ const Layout = (props: Props) => {
           {children}
         </Box>
       </Box>
-      <Loading show={isLoading} />
+      <Suspense fallback="">
+        <Loading show={isLoading} />
+      </Suspense>
     </NoSsr>
   );
 };

@@ -2,15 +2,13 @@ import axios, { AxiosRequestConfig } from "axios";
 import { isLoadingAtom, messageAlertAtom } from "@store/uiAtoms";
 import { useSetRecoilState } from "recoil";
 import { ErrorResponseErrorProps } from "@utils/interfaces/api";
-
+import { API } from "@utils/constants";
 interface AxiosRequestProps
   extends Omit<AxiosRequestConfig, "headers" | "baseUrl" | "url" | "data"> {
   endPoint: string;
   payload?: {} | [];
   message?: string;
 }
-
-const URL_BASE = process.env.URL_BACKEND;
 
 export default function useAxios() {
   const setLoading = useSetRecoilState(isLoadingAtom);
@@ -19,7 +17,7 @@ export default function useAxios() {
   const axiosPublic = async (props: AxiosRequestProps) => {
     const { endPoint, method = "get", payload, message } = props;
     setLoading(true);
-    const url = `${URL_BASE}${endPoint}`;
+    const url = `${API}${endPoint}`;
     try {
       const { data } = await axios({ url, method, data: payload });
       message !== undefined
@@ -32,6 +30,7 @@ export default function useAxios() {
         const message = data[0].messages[0].message;
         setMessageError({ message, statusCode });
       } else {
+        console.log("otro error", err);
         setMessageError({ message: "Error desconocido", statusCode: 0 });
       }
       return null;

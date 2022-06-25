@@ -1,17 +1,24 @@
-import FormRegister from "@components/views/register/FormRegister";
 import { Box, Typography } from "@mui/material";
 import type { NextPage } from "next";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
-const register: NextPage = () => {
+const FormRegister = dynamic(() => import("@components/views/register/FormRegister"), {
+  suspense: true,
+  ssr: false,
+});
+
+const Register: NextPage = () => {
   return (
     <Box className="p-4">
       <Typography variant="h4" align="center">
         Regístrate
       </Typography>
-
-      <FormRegister />
+      <Suspense fallback={"Loading..."}>
+        <FormRegister />
+      </Suspense>
     </Box>
   );
 };
 
-export default register;
+export default Register;

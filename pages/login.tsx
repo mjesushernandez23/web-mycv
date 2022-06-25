@@ -1,7 +1,12 @@
-import FormLogin from "@components/views/login/FormLogin";
-import { Typography } from "@mui/material";
+import dynamic from "next/dynamic";
+import Typography from "@mui/material/Typography";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
+import { Suspense } from "react";
+const FormLogin = dynamic(() => import("@components/views/login/FormLogin"), {
+  suspense: true,
+  ssr: false,
+});
 
 const Login: NextPage = () => {
   const {
@@ -12,8 +17,12 @@ const Login: NextPage = () => {
 
   return (
     <div className="p-4">
-      <Typography variant="h3" align="center">Acceso</Typography>
-      <FormLogin />
+      <Typography variant="h3" align="center">
+        Acceso
+      </Typography>
+      <Suspense fallback={"loading..."}>
+        <FormLogin />
+      </Suspense>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useSetRecoilState } from "recoil";
 import { userInfoAtom } from "@store/userAtoms";
 import { useRouter } from "next/router";
-import { getToken, deleteToken, setToken } from "@api/localStorage";
+import { deleteToken, setToken } from "@api/localStorage";
 import { LoginResponseProps } from "@utils/interfaces/api";
 
 export default function useAuth() {

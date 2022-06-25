@@ -21,7 +21,7 @@ export const LinksMobile = ({ route, label, _isLogin }: LinksProps) =>
     <></>
   ) : (
     <ListItem disablePadding>
-      <Link href={`/${route}`} passHref>
+      <Link href={`/${route}`} passHref prefetch={false}>
         <ListItemButton sx={{ textAlign: "center" }} LinkComponent="a">
           <ListItemText primary={label} />
         </ListItemButton>
@@ -33,8 +33,8 @@ export const LinksDesktop = ({ route, label, _isLogin }: LinksProps) =>
   hiddenLinks(route, _isLogin) ? (
     <></>
   ) : (
-    <Link href={`/${route}`} passHref>
-      <Button sx={{ color: "#fff" }} LinkComponent="a">
+    <Link href={`/${route}`} prefetch={false} passHref>
+      <Button sx={{ color: "#fff" }} LinkComponent="a" variant="text">
         {label}
       </Button>
     </Link>

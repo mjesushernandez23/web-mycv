@@ -23,7 +23,7 @@ const Loading = (props: Props) => {
   };
 
   return (
-    <Backdrop open={show}>
+    <Backdrop open={show} className="z-drawer">
       {statusCode ? (
         <Alert
           variant="filled"
