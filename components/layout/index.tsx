@@ -1,22 +1,19 @@
 import { useState } from "react";
+import IconButton from "@mui/material/IconButton";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
+import Loading from "./Loading";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Link from "next/link";
 import { NoSsr } from "@mui/material";
-import Loading from "@components/ui/Loading";
 import { useRecoilValue } from "recoil";
 import { isLoadingAtom } from "@store/uiAtoms";
+import { userInfoAtom } from "@store/userAtoms";
+import { LinksDesktop, LinksMobile } from "./Links";
 
 interface Props {
   children: JSX.Element;
@@ -28,12 +25,15 @@ const navItems = [
   { route: "about", label: "Acerca de mi" },
   { route: "register", label: "Registro" },
   { route: "login", label: "Acceso" },
+  { route: "profile", label: "Perfil" },
 ];
 
 const Layout = (props: Props) => {
   const { children, window } = props;
+  const userInfo = useRecoilValue(userInfoAtom);
   const isLoading = useRecoilValue(isLoadingAtom);
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
+
   const handleDrawerToggle = () => {
     setShowSideBar(prev => !prev);
   };
@@ -62,12 +62,12 @@ const Layout = (props: Props) => {
               Cv Jesus
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map(({ route, label }, index) => (
-                <Link href={`/${route}`} key={`link-${index}`} passHref>
-                  <Button sx={{ color: "#fff" }} LinkComponent="a">
-                    {label}
-                  </Button>
-                </Link>
+              {navItems.map((props, index) => (
+                <LinksDesktop
+                  key={`linksDesktop-${index}`}
+                  _isLogin={Boolean(userInfo)}
+                  {...props}
+                />
               ))}
             </Box>
           </Toolbar>
@@ -92,14 +92,12 @@ const Layout = (props: Props) => {
               </Typography>
               <Divider />
               <List>
-                {navItems.map(({ route, label }, index) => (
-                  <ListItem key={`slideLinks${index}`} disablePadding>
-                    <Link href={`/${route}`} passHref>
-                      <ListItemButton sx={{ textAlign: "center" }} LinkComponent="a">
-                        <ListItemText primary={label} />
-                      </ListItemButton>
-                    </Link>
-                  </ListItem>
+                {navItems.map((props, index) => (
+                  <LinksMobile
+                    key={`linksMobile${index}`}
+                    _isLogin={Boolean(userInfo)}
+                    {...props}
+                  />
                 ))}
               </List>
             </Box>

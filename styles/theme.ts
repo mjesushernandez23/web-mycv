@@ -1,9 +1,16 @@
 import { createTheme } from "@mui/material/styles";
-import { blueGrey } from "@mui/material/colors";
+import { lightBlue, deepPurple, blueGrey, red, indigo } from "@mui/material/colors";
 
 const theme = createTheme({
   palette: {
-    primary: blueGrey,
+    primary: indigo,
+  },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: "contained",
+      },
+    },
   },
 });
 

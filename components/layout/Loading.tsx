@@ -26,8 +26,7 @@ const Loading = (props: Props) => {
     <Backdrop open={show}>
       {statusCode ? (
         <Alert
-        variant="filled"
-        className="w-1/3"
+          variant="filled"
           action={
             <IconButton
               onClick={handleCleanMessage}

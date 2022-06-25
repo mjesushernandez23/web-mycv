@@ -13,13 +13,13 @@ export const sizeScreenAtom = atom<ScreenSizesType>({
 
 export const isLoadingAtom = atom<boolean>({
   key: "isLoadingAtom",
-  default: true,
+  default: false,
 });
 
 export const messageAlertAtom = atom<MessageErrorAtomProps>({
   key: "messageAlertAtom",
   default: {
-    message: "prueba",
-    statusCode: 500,
+    message: "",
+    statusCode: 0,
   },
 });

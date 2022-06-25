@@ -3,13 +3,27 @@ import { phoneNumberReg, whiteSpaces } from "./regularExpressions";
 
 const messageErrorWhiteSpaces = "Tienes espacios en blanco";
 
+const validationEmail = string()
+  .email("Ingresa un correo valido")
+  .required("El correo es obligatorio");
+
+const validationPassword = string()
+  .min(6, "La contraseña debe tener al menos de 6 caracteres")
+  .max(16, "La contraseña debe tener máximo 16 caracteres")
+  .required("La contraseña es obligatoria");
+
+export type nameFieldsRegister =
+  | "email"
+  | "firstName"
+  | "lastName"
+  | "company"
+  | "phoneNumber"
+  | "password";
+
 export const registerValidation = {
   validationSchema: object({
-    email: string().email("Ingresa un correo valido").required("El correo es obligatorio"),
-    password: string()
-      .min(6, "La contraseña debe tener al menos de 6 caracteres")
-      .max(16, "La contraseña debe tener máximo 16 caracteres")
-      .required("La contraseña es obligatoria"),
+    email: validationEmail,
+    password: validationPassword,
     company: string()
       .min(3, "La compañía debe tener al menos 3 caracteres")
       .max(16, "La compañía debe tener máximo 16 caracteres")
@@ -40,10 +54,15 @@ export const registerValidation = {
   },
 };
 
-export type nameFields =
-  | "email"
-  | "firstName"
-  | "lastName"
-  | "company"
-  | "phoneNumber"
-  | "password";
+export type nameFieldsLogin = "identifier" | "password";
+
+export const loginValidation = {
+  validationSchema: object({
+    identifier: validationEmail,
+    password: validationPassword,
+  }),
+  initialValues: {
+    identifier: "",
+    password: "",
+  },
+};

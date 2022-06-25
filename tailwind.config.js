@@ -9,6 +9,9 @@ module.exports = {
       height: {
         fit: "fit-content",
       },
+      zIndex: {
+        drawer: "1200",
+      },
     },
   },
   plugins: [],

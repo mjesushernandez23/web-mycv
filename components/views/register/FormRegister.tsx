@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
 import MyInput, { MyInputBaseProps } from "@components/ui/MyInput";
 import Button from "@mui/material/Button";
-import { nameFields, registerValidation } from "@utils/validations";
+import { nameFieldsRegister, registerValidation } from "@utils/validations";
 import useAxios from "@hooks/useAxios";
 
 interface InputsProps extends MyInputBaseProps {
-  name: nameFields;
+  name: nameFieldsRegister;
   type?: string;
 }
 
@@ -38,7 +38,7 @@ const FormRegister = () => {
         <MyInput
           key={`input${index}`}
           value={values[name]}
-          error={errors[name] ?? ""}
+          error={errors[name]}
           name={name}
           handleChange={handleChange}
           handleBlur={handleBlur}

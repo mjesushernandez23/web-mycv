@@ -16,7 +16,7 @@ export interface MyInputBaseProps {
 }
 interface Props extends Omit<BaseTextFieldProps, conflictsTypes>, MyInputBaseProps {
   name: string;
-  error: string;
+  error?: string;
   value: string;
   handleChange: FormikHandlers["handleChange"];
   handleBlur: FormikHandlers["handleBlur"];
@@ -25,8 +25,6 @@ interface Props extends Omit<BaseTextFieldProps, conflictsTypes>, MyInputBasePro
 const MyInput = (props: Props) => {
   const { name, value, placeholder, label, handleChange, handleBlur, error, ...propsTextField } =
     props;
-
-  const trimValue = (v: string) => handleChange;
 
   return (
     <TextField

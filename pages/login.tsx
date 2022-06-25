@@ -1,3 +1,5 @@
+import FormLogin from "@components/views/login/FormLogin";
+import { Typography } from "@mui/material";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 
@@ -8,7 +10,12 @@ const Login: NextPage = () => {
 
   console.log("query", confirmPassword);
 
-  return <div>Login</div>;
+  return (
+    <div className="p-4">
+      <Typography variant="h3" align="center">Acceso</Typography>
+      <FormLogin />
+    </div>
+  );
 };
 
 export default Login;
