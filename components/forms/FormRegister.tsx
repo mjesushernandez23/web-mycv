@@ -3,6 +3,7 @@ import MyInput, { MyInputBaseProps } from "@components/ui/MyInput";
 import Button from "@mui/material/Button";
 import { nameFieldsRegister, registerValidation } from "@utils/validations";
 import useAxios from "@hooks/useAxios";
+import Link from "next/link";
 
 interface InputsProps extends MyInputBaseProps {
   name: nameFieldsRegister;
@@ -45,10 +46,15 @@ const FormRegister = () => {
           {...restProps}
         />
       ))}
-      <div className="col-span-2 flex justify-end">
+      <div className="col-span-2 flex flex-col items-center">
         <Button className="w-fit h-fit" size="large" variant="contained" type="submit">
           Enviar
         </Button>
+        <Link href="/login">
+          <Button className="mt-2" LinkComponent="a" variant="text" color="secondary">
+            ¿Estas registrado?
+          </Button>
+        </Link>
       </div>
     </form>
   );

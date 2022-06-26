@@ -4,11 +4,10 @@ import Typography from "@mui/material/Typography";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Suspense } from "react";
-import { DYNAMIC } from "@utils/constants";
 import { Button, Dialog } from "@mui/material";
 
-const FormLogin = dynamic(() => import("@views/login/FormLogin"), { ssr: false, suspense: true });
-const RememberPassword = dynamic(() => import("@views/login/RememberPassword"), {
+const FormLogin = dynamic(() => import("@forms/FormLogin"), { ssr: false, suspense: true });
+const RecoverPassword = dynamic(() => import("@forms/RecoverPassword"), {
   ssr: false,
   suspense: true,
 });
@@ -27,15 +26,20 @@ const Login: NextPage = () => {
 
   return (
     <div className="p-4 flex flex-wrap justify-center">
-      <Typography variant="h3">Acceso</Typography>
+      <Typography variant="h4">Inicio de sesión</Typography>
       <Suspense fallback={"loading..."}>
         <FormLogin />
         <Dialog open={isRememberPassword} onClose={handleShowRememberPassword}>
-          <RememberPassword />
+          <RecoverPassword onClose={handleShowRememberPassword} />
         </Dialog>
 
-        <Button className="w-fit mx-auto" onClick={handleShowRememberPassword} variant="text">
-          Olvide la contraseña
+        <Button
+          className="w-fit mx-auto mt-2"
+          onClick={handleShowRememberPassword}
+          LinkComponent="a"
+          variant="text"
+        >
+          Recuperar contraseña
         </Button>
       </Suspense>
     </div>

@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import { useRouter } from "next/router";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { NoSsr } from "@mui/material";
@@ -37,12 +37,12 @@ const navItems = [
 
 const Layout = (props: Props) => {
   const { children, window } = props;
-
-  useRememberSession();
-
   const userInfo = useRecoilValue(userInfoAtom);
   const isLoading = useRecoilValue(isLoadingAtom);
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
+
+  const { pathname } = useRouter();
+  useRememberSession();
 
   const handleDrawerToggle = () => {
     setShowSideBar(prev => !prev);
@@ -74,6 +74,7 @@ const Layout = (props: Props) => {
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((props, index) => (
                 <LinksDesktop
+                  pathName={pathname}
                   key={`linksDesktop-${index}`}
                   _isLogin={Boolean(userInfo)}
                   {...props}
@@ -98,12 +99,13 @@ const Layout = (props: Props) => {
           >
             <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
               <Typography variant="h6" sx={{ my: 2 }}>
-                MUI
+                Cv <br /> Jesús <br /> Hernández
               </Typography>
               <Divider />
               <List>
                 {navItems.map((props, index) => (
                   <LinksMobile
+                    pathName={pathname}
                     key={`linksMobile${index}`}
                     _isLogin={Boolean(userInfo)}
                     {...props}

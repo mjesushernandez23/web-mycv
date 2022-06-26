@@ -69,7 +69,7 @@ export const loginValidation = {
   },
 };
 
-export const rememberPassword = {
+export const validRecoverPassword = {
   validationSchema: object({
     email: validationEmail,
   }),

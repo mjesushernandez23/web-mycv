@@ -18,7 +18,7 @@
     "paths": {
       "@styles/*": ["styles/*"],
       "@components/*": ["components/*"],
-      "@views/*": ["components/views/*.tsx"],
+      "@forms/*": ["components/forms/*.tsx"],
       "@ui/*": ["components/ui/*.tsx"],
       "@store/*": ["store/*.ts"],
       "@utils/*": ["utils/*"],

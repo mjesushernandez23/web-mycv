@@ -7,7 +7,7 @@ import Link from "next/link";
 interface LinksProps {
   route: string;
   label: string;
-
+  pathName: string;
   _isLogin: boolean;
 }
 
@@ -17,20 +17,28 @@ const hiddenLinks = (route: string, _isLogin: boolean): boolean => {
   return false;
 };
 
-export const LinksMobile = ({ route, label, _isLogin }: LinksProps) =>
+const routeActive = (route: string, pathName: string): boolean =>
+  pathName.substring(1) === route ? true : false;
+
+export const LinksMobile = ({ route, label, _isLogin, pathName }: LinksProps) =>
   hiddenLinks(route, _isLogin) ? (
     <></>
   ) : (
     <ListItem disablePadding>
       <Link href={`/${route}`} passHref>
-        <ListItemButton sx={{ textAlign: "center" }} LinkComponent="a">
-          <ListItemText primary={label} />
+        <ListItemButton
+          LinkComponent="a"
+          className={`justify-center ${
+            routeActive(route, pathName) ? "font-bold underline text-primary-500 opacity-100" : ""
+          }`}
+        >
+          {label}
         </ListItemButton>
       </Link>
     </ListItem>
   );
 
-export const LinksDesktop = ({ route, label, _isLogin }: LinksProps) =>
+export const LinksDesktop = ({ route, label, _isLogin, pathName }: LinksProps) =>
   hiddenLinks(route, _isLogin) ? (
     <></>
   ) : (

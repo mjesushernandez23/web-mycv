@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-const FormRegister = dynamic(() => import("@components/views/register/FormRegister"), {
+const FormRegister = dynamic(() => import("@forms/FormRegister"), {
   suspense: true,
   ssr: false,
 });
