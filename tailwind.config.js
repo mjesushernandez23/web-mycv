@@ -10,7 +10,7 @@ module.exports = {
         fit: "fit-content",
       },
       zIndex: {
-        drawer: "1200",
+        drawer: "1500",
       },
     },
   },

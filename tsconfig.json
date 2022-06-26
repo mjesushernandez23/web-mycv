@@ -18,14 +18,13 @@
     "paths": {
       "@styles/*": ["styles/*"],
       "@components/*": ["components/*"],
-      "@layout/*": ["components/layout/*"],
-      "@views/*": ["components/views/*"],
-      "@ui/*": ["components/ui/*"],
-      "@store/*": ["store/*"],
+      "@views/*": ["components/views/*.tsx"],
+      "@ui/*": ["components/ui/*.tsx"],
+      "@store/*": ["store/*.ts"],
       "@utils/*": ["utils/*"],
-      "@interfaces/*": ["utils/interfaces/*"],
-      "@hooks/*": ["hooks/*"],
-      "@api/*": ["api/*"]
+      "@interfaces/*": ["utils/interfaces/*.ts"],
+      "@hooks/*": ["hooks/*.ts"],
+      "@api/*": ["api/*.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

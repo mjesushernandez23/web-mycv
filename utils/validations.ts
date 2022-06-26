@@ -3,6 +3,8 @@ import { phoneNumberReg, whiteSpaces } from "./regularExpressions";
 
 const messageErrorWhiteSpaces = "Tienes espacios en blanco";
 
+export const isValidForm = (errors: {}) => (Object.keys(errors).length === 0 ? true : false);
+
 const validationEmail = string()
   .email("Ingresa un correo valido")
   .required("El correo es obligatorio");
@@ -64,5 +66,14 @@ export const loginValidation = {
   initialValues: {
     identifier: "",
     password: "",
+  },
+};
+
+export const rememberPassword = {
+  validationSchema: object({
+    email: validationEmail,
+  }),
+  initialValues: {
+    email: "",
   },
 };

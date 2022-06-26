@@ -9,7 +9,7 @@ import { Typography } from "@mui/material";
 const ProfilePage: NextPage = () => {
   const userInfo = useRecoilValue(userInfoAtom);
   const router = useRouter();
-  if (userInfo === null) router.push("/");
+  if (!userInfo) router.push("/");
   const { handleLogout } = useAuth();
 
   return (

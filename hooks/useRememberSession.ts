@@ -3,6 +3,7 @@ import { getToken } from "@api/localStorage";
 import { userInfoAtom } from "@store/userAtoms";
 import { useSetRecoilState } from "recoil";
 import { userMeApi } from "@api/userApi";
+import wakeUpServer from "@api/wakeUpServer";
 
 export default function useRememberSession(): void {
   const setUserInfo = useSetRecoilState(userInfoAtom);
@@ -10,11 +11,16 @@ export default function useRememberSession(): void {
   /* eslint-disable */
   useEffect(() => {
     const token = getToken();
-    token &&
-      (async () => {
+
+    (async () => {
+      if (token) {
         const result = await userMeApi(token);
         setUserInfo(result);
-      })();
+      } else {
+        await wakeUpServer();
+        console.log("finish")
+      }
+    })();
   }, []);
   /* eslint-enable */
 }

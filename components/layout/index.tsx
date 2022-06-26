@@ -29,7 +29,7 @@ interface Props {
 
 const navItems = [
   { route: "", label: "Inicio" },
-  { route: "about", label: "Acerca de mi" },
+  { route: "about", label: "Acerca de mi", prefetch: true },
   { route: "register", label: "Registro" },
   { route: "login", label: "Acceso" },
   { route: "profile", label: "Perfil" },
