@@ -18,7 +18,6 @@ export default function useRememberSession(): void {
         setUserInfo(result);
       } else {
         await wakeUpServer();
-        console.log("finish")
       }
     })();
   }, []);

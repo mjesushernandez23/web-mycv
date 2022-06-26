@@ -1,4 +1,4 @@
-import { string, object } from "yup";
+import { string, object, ref } from "yup";
 import { phoneNumberReg, whiteSpaces } from "./regularExpressions";
 
 const messageErrorWhiteSpaces = "Tienes espacios en blanco";
@@ -75,5 +75,22 @@ export const validRecoverPassword = {
   }),
   initialValues: {
     email: "",
+  },
+};
+
+export const validResetPassword = {
+  validationSchema: object({
+    password: validationPassword,
+    passwordConfirmation: string().test(
+      "Contraseña iguales",
+      "Las contraseñas deben de ser iguales",
+      (value, ctx) => {
+        return value === ctx.parent.password;
+      }
+    ),
+  }),
+  initialValues: {
+    password: "",
+    passwordConfirmation: "",
   },
 };
