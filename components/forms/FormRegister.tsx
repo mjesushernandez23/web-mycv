@@ -21,15 +21,20 @@ const inputsProps: InputsProps[] = [
 
 const FormRegister = () => {
   const { axiosPublic } = useAxios();
-  const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
+  const { values, errors, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
     ...registerValidation,
-    onSubmit: async payload => {
+    onSubmit: async values => {
+      const payload = {
+        ...values,
+        username: values.email,
+      };
       const response = await axiosPublic({
         endPoint: "/auth/local/register",
         method: "post",
         payload,
+        messageSuccess: "Revisa tu bandeja de entrada",
       });
-      console.log(response);
+      response && resetForm();
     },
   });
 
