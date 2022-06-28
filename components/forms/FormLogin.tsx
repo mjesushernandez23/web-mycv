@@ -8,13 +8,13 @@ import SendIcon from "@mui/icons-material/Send";
 import useAuth from "@hooks/useAuth";
 
 const FormLogin = () => {
-  const { axiosPublic } = useAxios();
+  const { axiosSimple } = useAxios();
   const { handleLogin } = useAuth();
 
   const { values, errors, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
     ...loginValidation,
     onSubmit: async payload => {
-      const result: LoginResponseProps | null = await axiosPublic({
+      const result: LoginResponseProps | null = await axiosSimple({
         endPoint: "/auth/local",
         method: "post",
         payload,

@@ -11,14 +11,14 @@ interface ResetPasswordProps {
 }
 
 const ResetPasswords = ({ code }: ResetPasswordProps) => {
-  const { axiosPublic } = useAxios();
+  const { axiosSimple } = useAxios();
   const { handleLogin } = useAuth();
 
   const { values, errors, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
     ...validResetPassword,
     onSubmit: async values => {
       const payload = { ...values, code };
-      const result = await axiosPublic({
+      const result = await axiosSimple({
         endPoint: "/auth/reset-password",
         method: "post",
         payload,

@@ -20,7 +20,7 @@ const inputsProps: InputsProps[] = [
 ];
 
 const FormRegister = () => {
-  const { axiosPublic } = useAxios();
+  const { axiosSimple } = useAxios();
   const { values, errors, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
     ...registerValidation,
     onSubmit: async values => {
@@ -28,7 +28,7 @@ const FormRegister = () => {
         ...values,
         username: values.email,
       };
-      const response = await axiosPublic({
+      const response = await axiosSimple({
         endPoint: "/auth/local/register",
         method: "post",
         payload,

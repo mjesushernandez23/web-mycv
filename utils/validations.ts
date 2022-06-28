@@ -113,8 +113,8 @@ export const validationConferencieCreate = {
   }),
   initialValues: {
     time: new Date().toISOString().slice(0, -8),
-    url: "",
-    comments: "",
+    url: undefined,
+    comments: undefined,
     file: undefined,
   },
 };

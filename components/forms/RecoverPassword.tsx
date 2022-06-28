@@ -10,11 +10,11 @@ interface Props {
 }
 
 const RecoverPassword = ({ onClose }: Props) => {
-  const { axiosPublic } = useAxios();
+  const { axiosSimple } = useAxios();
   const { values, errors, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
     ...validRecoverPassword,
     onSubmit: async payload => {
-      const result = await axiosPublic({
+      const result = await axiosSimple({
         method:"post",
         endPoint: "/auth/forgot-password",
         payload,
