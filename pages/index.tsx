@@ -5,6 +5,7 @@ import FolderZipIcon from "@mui/icons-material/FolderZip";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import MyCv from "@components/home/MyCv";
 
 const acceptFormat = [
   { icon: <PictureAsPdfIcon />, extension: "pdf" },
@@ -14,14 +15,7 @@ const acceptFormat = [
 const Home: NextPage = () => {
   return (
     <div className="">
-      <MyUpload
-        name="test"
-        acceptFormat={acceptFormat}
-        onUpload={(values: FileList) => {
-          console.log(values);
-        }}
-        multiple
-      />
+      <MyCv />
     </div>
   );
 };
