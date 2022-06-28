@@ -10,8 +10,14 @@ const theme = createTheme({
       color: indigo[500],
       fontWeight: 500,
     },
+    h5: {
+      color: blueGrey[700],
+    },
     h6: {
       color: indigo[500],
+    },
+    subtitle1: {
+      color: blueGrey[500],
     },
   },
   components: {

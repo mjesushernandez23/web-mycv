@@ -1,4 +1,4 @@
-import { string, object, ref } from "yup";
+import { string, object, date, mixed, InferType } from "yup";
 import { phoneNumberReg, whiteSpaces } from "./regularExpressions";
 
 const messageErrorWhiteSpaces = "Tienes espacios en blanco";
@@ -92,5 +92,29 @@ export const validResetPassword = {
   initialValues: {
     password: "",
     passwordConfirmation: "",
+  },
+};
+
+export const validationConferencieCreate = {
+  validationSchema: object({
+    time: date()
+      .min(new Date(), "La fecha no puede ser anterior")
+      .required("Es obligatorio una fecha y hora"),
+    url: string().url().notRequired(),
+    comments: string().min(8, "Mínimo 8 caracteres").optional(),
+    file: mixed()
+      .test("fileType", "Formatos admitidos zip,rar y pdf", (value: FileList) => {
+        if (value === undefined) return true;
+        return Object.entries(value).every(([, key]) => {
+          return /[zip|pdf|rar]$/.test(key.type);
+        });
+      })
+      .optional(),
+  }),
+  initialValues: {
+    time: new Date().toISOString().slice(0, -8),
+    url: "",
+    comments: "",
+    file: undefined,
   },
 };

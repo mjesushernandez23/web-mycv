@@ -15,9 +15,23 @@ module.exports = {
       zIndex: {
         drawer: "1500",
       },
+      animation: {
+        "rotate-180": "rotate-90-cw 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+      },
+      keyframes: {
+        "rotate-180": {
+          "0%": {
+            transform: "rotate(0)",
+          },
+          "100%": {
+            transform: " rotate(180deg)",
+          },
+        },
+      },
     },
     colors: {
       primary: indigo,
+      white: "#fff",
     },
   },
 

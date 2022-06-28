@@ -29,3 +29,10 @@ export interface UserInfoProps {
   lastName: string;
   phoneNumber: string;
 }
+
+export interface CreateConferencieProps {
+  time: string;
+  url?: string;
+  comments?: string;
+  users_permissions_user: string;
+}

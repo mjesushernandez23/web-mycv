@@ -17,7 +17,7 @@ export interface MyInputBaseProps {
 interface Props extends Omit<BaseTextFieldProps, conflictsTypes>, MyInputBaseProps {
   name: string;
   error?: string;
-  value: string;
+  value?: string;
   handleChange: FormikHandlers["handleChange"];
   handleBlur: FormikHandlers["handleBlur"];
 }
@@ -33,7 +33,7 @@ const MyInput = (props: Props) => {
       placeholder={placeholder}
       onChange={handleChange}
       onBlur={handleBlur}
-      value={value}
+      value={value ?? ""}
       error={!!error}
       helperText={error}
       {...propsTextField}
