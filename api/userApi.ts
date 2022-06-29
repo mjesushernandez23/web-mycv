@@ -1,6 +1,7 @@
-import axios from "axios";
-import { UserInfoProps } from "@interfaces/api";
+import axios, { AxiosError } from "axios";
+import { ErrorResponseErrorProps, UserInfoProps } from "@interfaces/api";
 import { API } from "@utils/constants";
+import { deleteToken } from "./localStorage";
 export async function userMeApi(token: string): Promise<UserInfoProps | null> {
   const url = `${API}/users/me`;
   try {
@@ -11,7 +12,11 @@ export async function userMeApi(token: string): Promise<UserInfoProps | null> {
       },
     });
     return data;
-  } catch (error) {
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      const { statusCode } = err.response?.data as ErrorResponseErrorProps;
+      statusCode === 401 && deleteToken();
+    }
     return null;
   }
 }

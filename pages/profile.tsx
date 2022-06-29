@@ -25,11 +25,12 @@ const ProfilePage: NextPage = () => {
 
   if (userInfo === null) return <>Loading...</>;
 
-  const { _id, firstName, lastName } = userInfo;
+  const { id, firstName, lastName } = userInfo;
 
   const handleShowForm = () => {
     setShowForm(prev => !prev);
   };
+  console.log(userInfo);
 
   return (
     <div className="p-4">
@@ -41,7 +42,7 @@ const ProfilePage: NextPage = () => {
         <br /> estoy emocionado de poder concretar una cita.
       </Typography>
       <Collapse in={showForm} unmountOnExit>
-        <FormCreateConference _id={_id} />
+        <FormCreateConference _id={id} />
       </Collapse>
 
       <div className="my-4 w-full flex justify-center">

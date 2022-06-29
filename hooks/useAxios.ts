@@ -27,7 +27,7 @@ export default function useAxios() {
       messageError,
       isAuth = false,
     } = props;
-    console.log(props);
+
     setLoading(true);
     const url = `${API}${endPoint}`;
     const headers = isAuth ? { Authorization: `Bearer ${getToken()}` } : undefined;

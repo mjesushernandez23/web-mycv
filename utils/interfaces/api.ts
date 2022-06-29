@@ -20,7 +20,7 @@ export interface LoginResponseProps {
 }
 
 export interface UserInfoProps {
-  _id: string;
+  id: number;
   blocked: boolean;
   company: string;
   confirmed: boolean;

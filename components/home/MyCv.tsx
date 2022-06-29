@@ -1,12 +1,9 @@
-import usePrint from "@hooks/usePrint";
 import { Button, Typography } from "@mui/material";
 
 const MyCv = () => {
-  const { nodeRef, handlePrint } = usePrint();
-
   return (
-    <div >
-      <div ref={nodeRef} className="">
+    <div>
+      <div className="">
         <Typography variant="h1">test</Typography>
         <Typography variant="h1">test</Typography>
         <Typography variant="h1">test</Typography>
@@ -21,9 +18,7 @@ const MyCv = () => {
         <Typography variant="h1">test</Typography>
         <Typography variant="h1">test</Typography>
         <Typography variant="h1">test</Typography>
-        
       </div>
-      <Button onClick={() => handlePrint()}>Print</Button>
     </div>
   );
 };

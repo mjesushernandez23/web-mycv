@@ -8,7 +8,7 @@ import MyUpload from "@components/ui/MyUpload";
 
 import useAxios from "@hooks/useAxios";
 interface Props {
-  _id: string;
+  _id: number;
 }
 
 const FormCreateConference = ({ _id }: Props) => {
