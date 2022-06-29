@@ -7,7 +7,11 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import useAuth from "@hooks/useAuth";
 
-const FormLogin = () => {
+interface FormLoginProps {
+  onRegister: () => void;
+}
+
+const FormLogin = ({ onRegister }: FormLoginProps) => {
   const { axiosSimple } = useAxios();
   const { handleLogin } = useAuth();
 
@@ -46,9 +50,12 @@ const FormLogin = () => {
         type="password"
         value={values.password}
       />
-      <div className="col-span-2 w-full flex justify-center">
+      <div className="col-span-2 w-full flex flex-col items-center">
         <Button variant="contained" type="submit" className="w-fit" endIcon={<SendIcon />}>
           Ingresar
+        </Button>
+        <Button className="mt-2 capitalize" LinkComponent="a" onClick={onRegister} variant="text" type="button">
+          Regístrate
         </Button>
       </div>
     </form>

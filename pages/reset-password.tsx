@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ResetPasswords from "@components/forms/ResetPasswords";
-import { Button, Typography } from "@mui/material";
-import { NextPage, GetStaticProps, GetStaticPropsContext } from "next";
+import { Typography } from "@mui/material";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 const ResetPassword: NextPage = () => {

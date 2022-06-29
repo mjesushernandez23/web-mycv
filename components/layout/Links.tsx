@@ -1,6 +1,5 @@
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 
@@ -12,7 +11,7 @@ interface LinksProps {
 }
 
 const hiddenLinks = (route: string, _isLogin: boolean): boolean => {
-  if (_isLogin && (route === "login" || route === "register")) return true;
+  if (_isLogin && route === "login") return true;
   if (!_isLogin && route === "profile") return true;
   return false;
 };

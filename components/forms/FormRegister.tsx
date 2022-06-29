@@ -3,7 +3,6 @@ import MyInput, { MyInputBaseProps } from "@components/ui/MyInput";
 import Button from "@mui/material/Button";
 import { nameFieldsRegister, registerValidation } from "@utils/validations";
 import useAxios from "@hooks/useAxios";
-import Link from "next/link";
 
 interface InputsProps extends MyInputBaseProps {
   name: nameFieldsRegister;
@@ -19,7 +18,11 @@ const inputsProps: InputsProps[] = [
   { label: "Contraseña", placeholder: "*********", name: "password", type: "password" },
 ];
 
-const FormRegister = () => {
+interface FormRegisterProps {
+  onClose: () => void;
+}
+
+const FormRegister = ({ onClose }: FormRegisterProps) => {
   const { axiosSimple } = useAxios();
   const { values, errors, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
     ...registerValidation,
@@ -55,11 +58,10 @@ const FormRegister = () => {
         <Button className="w-fit h-fit" size="large" variant="contained" type="submit">
           Enviar
         </Button>
-        <Link href="/login">
-          <Button className="mt-2" LinkComponent="a" variant="text" color="secondary">
-            ¿Estas registrado?
-          </Button>
-        </Link>
+
+        <Button className="mt-2" onClick={onClose} variant="text" LinkComponent="a" type="button">
+          Inicia sesión
+        </Button>
       </div>
     </form>
   );
