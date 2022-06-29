@@ -1,5 +1,7 @@
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 
@@ -8,6 +10,7 @@ interface LinksProps {
   label: string;
   pathName: string;
   _isLogin: boolean;
+  icon?: JSX.Element;
 }
 
 const hiddenLinks = (route: string, _isLogin: boolean): boolean => {
@@ -19,7 +22,7 @@ const hiddenLinks = (route: string, _isLogin: boolean): boolean => {
 const routeActive = (route: string, pathName: string): boolean =>
   pathName.substring(1) === route ? true : false;
 
-export const LinksMobile = ({ route, label, _isLogin, pathName }: LinksProps) =>
+export const LinksMobile = ({ route, label, _isLogin, pathName, icon }: LinksProps) =>
   hiddenLinks(route, _isLogin) ? (
     <></>
   ) : (
@@ -27,10 +30,11 @@ export const LinksMobile = ({ route, label, _isLogin, pathName }: LinksProps) =>
       <Link href={`/${route}`} passHref>
         <ListItemButton
           LinkComponent="a"
-          className={`justify-center ${
-            routeActive(route, pathName) ? "font-bold underline text-primary-500 opacity-100" : ""
+          className={`items-center ${
+            routeActive(route, pathName) ? "font-bold underline text-primary-500" : ""
           }`}
         >
+          <span className="mr-4 flex">{icon}</span>
           {label}
         </ListItemButton>
       </Link>

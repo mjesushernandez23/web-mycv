@@ -1,4 +1,13 @@
+//libraries
 import { Suspense, useState } from "react";
+import { useRouter } from "next/router";
+import { NoSsr } from "@mui/material";
+import { useRecoilValue } from "recoil";
+import { isLoadingAtom } from "@store/uiAtoms";
+import { userInfoAtom } from "@store/userAtoms";
+import dynamic from "next/dynamic";
+//components
+import { LinksDesktop, LinksMobile } from "./Links";
 import IconButton from "@mui/material/IconButton";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -6,16 +15,15 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useRouter } from "next/router";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { NoSsr } from "@mui/material";
-import { useRecoilValue } from "recoil";
-import { isLoadingAtom } from "@store/uiAtoms";
-import { userInfoAtom } from "@store/userAtoms";
-import { LinksDesktop, LinksMobile } from "./Links";
+//hooks
 import useRememberSession from "@hooks/useRememberSession";
-import dynamic from "next/dynamic";
+//icons
+import HomeIcon from "@mui/icons-material/Home";
+import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
+import LoginIcon from "@mui/icons-material/Login";
+import PersonIcon from "@mui/icons-material/Person";
 
 const Loading = dynamic(() => import("./Loading"), {
   ssr: false,
@@ -28,10 +36,10 @@ interface Props {
 }
 
 const navItems = [
-  { route: "", label: "Inicio" },
-  { route: "about", label: "Acerca de mi", prefetch: true },
-  { route: "login", label: "Acceso" },
-  { route: "profile", label: "Perfil" },
+  { route: "", label: "Inicio", icon: <HomeIcon /> },
+  { route: "about", label: "Acerca de mi", icon: <IntegrationInstructionsIcon /> },
+  { route: "login", label: "Acceso", icon: <LoginIcon /> },
+  { route: "profile", label: "Perfil", icon: <PersonIcon /> },
 ];
 
 const Layout = (props: Props) => {
@@ -97,8 +105,9 @@ const Layout = (props: Props) => {
             }}
           >
             <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-              <Typography variant="h6" sx={{ my: 2 }}>
-                Cv <br /> Jesús <br /> Hernández
+              <Typography variant="h6" className="m-4 leading-tight">
+                Curriculum de <br />
+                Jesús Hernández
               </Typography>
               <Divider />
               <List>
