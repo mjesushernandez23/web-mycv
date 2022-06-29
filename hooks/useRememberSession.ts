@@ -3,7 +3,6 @@ import { getToken } from "@api/localStorage";
 import { userInfoAtom } from "@store/userAtoms";
 import { useSetRecoilState } from "recoil";
 import { userMeApi } from "@api/userApi";
-import wakeUpServer from "@api/wakeUpServer";
 
 export default function useRememberSession(): void {
   const setUserInfo = useSetRecoilState(userInfoAtom);
@@ -16,8 +15,6 @@ export default function useRememberSession(): void {
       if (token) {
         const result = await userMeApi(token);
         setUserInfo(result);
-      } else {
-        await wakeUpServer();
       }
     })();
   }, []);

@@ -1,10 +1,10 @@
-import { ScreenSizesType } from "@utils/interfaces/ui";
+import { KeysFormats } from "@utils/interfaces/api";
 import { useSetRecoilState } from "recoil";
 import { sizeScreenAtom } from "@store/uiAtoms";
 import { useEffect } from "react";
 
 export interface PropsQueriesRanges {
-  id: ScreenSizesType;
+  id: KeysFormats;
   value: number;
 }
 

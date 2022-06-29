@@ -3,8 +3,12 @@
 const nextConfig = {
   reactStrictMode: true,
   assetPrefix: process.env.NODE_ENV === "production" ? "." : undefined,
+  images: {
+    domains: [process.env.API_BUCKET],
+  },
   env: {
     URL_BACKEND: process.env.URL_BACKEND,
+    API_BUCKET: process.env.API_BUCKET,
   },
 };
 

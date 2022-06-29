@@ -1,4 +1,4 @@
-import { ScreenSizesType } from "@utils/interfaces/ui";
+import { KeysFormats } from "@utils/interfaces/api";
 import { atom } from "recoil";
 
 export interface MessageErrorAtomProps {
@@ -6,7 +6,7 @@ export interface MessageErrorAtomProps {
   message: string;
 }
 
-export const sizeScreenAtom = atom<ScreenSizesType>({
+export const sizeScreenAtom = atom<KeysFormats | null>({
   key: "sizeScreenAtom",
   default: null,
 });
