@@ -23,3 +23,8 @@ export const messageAlertAtom = atom<MessageErrorAtomProps>({
     statusCode: 0,
   },
 });
+
+export const darkModeAtom = atom<boolean>({
+  key: "darkModeAtom",
+  default: false,
+});

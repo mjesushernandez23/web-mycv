@@ -18,6 +18,7 @@ export default function useAuth() {
   const handleLogout = () => {
     setUserInfo(null);
     deleteToken();
+    router.push("/");
   };
 
   return {

@@ -1,7 +1,7 @@
 //libraries
 import { Suspense, useState } from "react";
 import { useRouter } from "next/router";
-import { NoSsr } from "@mui/material";
+import { Button, Icon, NoSsr } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { isLoadingAtom } from "@store/uiAtoms";
 import { userInfoAtom } from "@store/userAtoms";
@@ -24,6 +24,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonIcon from "@mui/icons-material/Person";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 
 const Loading = dynamic(() => import("./Loading"), {
   ssr: false,
@@ -33,6 +34,7 @@ const Loading = dynamic(() => import("./Loading"), {
 interface Props {
   children: JSX.Element;
   window?: () => Window;
+  onChangeTheme: () => void;
 }
 
 const navItems = [
@@ -43,7 +45,7 @@ const navItems = [
 ];
 
 const Layout = (props: Props) => {
-  const { children, window } = props;
+  const { children, window, onChangeTheme } = props;
   const userInfo = useRecoilValue(userInfoAtom);
   const isLoading = useRecoilValue(isLoadingAtom);
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
@@ -88,6 +90,10 @@ const Layout = (props: Props) => {
                 />
               ))}
             </Box>
+
+            <IconButton onClick={onChangeTheme} color="inherit" className="mr-0 ml-auto">
+              <DarkModeOutlinedIcon />
+            </IconButton>
           </Toolbar>
         </AppBar>
         <Box component="nav">

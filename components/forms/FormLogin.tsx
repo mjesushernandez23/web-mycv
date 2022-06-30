@@ -51,10 +51,16 @@ const FormLogin = ({ onRegister }: FormLoginProps) => {
         value={values.password}
       />
       <div className="col-span-2 w-full flex flex-col items-center">
-        <Button variant="contained" type="submit" className="w-fit" endIcon={<SendIcon />}>
+        <Button type="submit" className="w-fit" endIcon={<SendIcon />}>
           Ingresar
         </Button>
-        <Button className="mt-2 capitalize" LinkComponent="a" onClick={onRegister} variant="text" type="button">
+        <Button
+          className="mt-2 capitalize"
+          LinkComponent="a"
+          onClick={onRegister}
+          variant="text"
+          type="button"
+        >
           Regístrate
         </Button>
       </div>

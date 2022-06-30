@@ -6,6 +6,9 @@ const theme = createTheme({
     primary: indigo,
   },
   typography: {
+    h1: {
+      color: indigo[500],
+    },
     h4: {
       color: indigo[500],
       fontWeight: 500,
@@ -29,6 +32,25 @@ const theme = createTheme({
         {
           props: { variant: "text", LinkComponent: "a" },
           style: { textTransform: "capitalize", fontSize: "1rem", color: blueGrey[700] },
+        },
+      ],
+    },
+  },
+});
+
+export const themeDark = createTheme({
+  palette: {
+    mode: "dark",
+  },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: "contained",
+      },
+      variants: [
+        {
+          props: { variant: "text", LinkComponent: "a" },
+          style: { textTransform: "capitalize", fontSize: "1rem", color: blueGrey[200] },
         },
       ],
     },
