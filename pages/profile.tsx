@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { userInfoAtom } from "@store/userAtoms";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
@@ -8,8 +8,11 @@ import useAuth from "@hooks/useAuth";
 import Typography from "@mui/material/Typography";
 import Collapse from "@mui/material/Collapse";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import dynamic from "next/dynamic";
 
-import FormCreateConference from "@components/forms/FormCreateConference";
+const FormCreateConference = dynamic(() => import("@components/forms/FormCreateConference"), {
+  suspense: true,
+});
 
 const ProfilePage: NextPage = () => {
   const userInfo = useRecoilValue(userInfoAtom);
@@ -30,7 +33,6 @@ const ProfilePage: NextPage = () => {
   const handleShowForm = () => {
     setShowForm(prev => !prev);
   };
-  console.log(userInfo);
 
   return (
     <div className="p-4">
@@ -42,7 +44,9 @@ const ProfilePage: NextPage = () => {
         <br /> estoy emocionado de poder concretar una cita.
       </Typography>
       <Collapse in={showForm} unmountOnExit>
-        <FormCreateConference _id={id} />
+        <Suspense>
+          <FormCreateConference _id={id} />
+        </Suspense>
       </Collapse>
 
       <div className="my-4 w-full flex justify-center">

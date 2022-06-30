@@ -41,6 +41,7 @@ const theme = createTheme({
 export const themeDark = createTheme({
   palette: {
     mode: "dark",
+    primary: indigo,
   },
   components: {
     MuiButton: {

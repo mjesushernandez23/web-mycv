@@ -18,17 +18,17 @@ const clientSideEmotionCache = createEmotionCache();
 
 function MyApp(props: MyAppProps) {
   const { Component, pageProps, emotionCache = clientSideEmotionCache } = props;
-  const [mode, setMode] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
 
   return (
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={mode ? theme : themeDark}>
+      <ThemeProvider theme={darkMode ? themeDark : theme}>
         <CssBaseline />
         <RecoilRoot>
-          <Layout onChangeTheme={() => setMode(prev => !prev)}>
+          <Layout darkMode={darkMode} onChangeTheme={() => setDarkMode(prev => !prev)}>
             <Component {...pageProps} />
           </Layout>
         </RecoilRoot>

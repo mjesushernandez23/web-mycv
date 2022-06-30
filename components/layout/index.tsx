@@ -25,6 +25,7 @@ import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstruct
 import LoginIcon from "@mui/icons-material/Login";
 import PersonIcon from "@mui/icons-material/Person";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 
 const Loading = dynamic(() => import("./Loading"), {
   ssr: false,
@@ -35,6 +36,7 @@ interface Props {
   children: JSX.Element;
   window?: () => Window;
   onChangeTheme: () => void;
+  darkMode: boolean;
 }
 
 const navItems = [
@@ -45,7 +47,7 @@ const navItems = [
 ];
 
 const Layout = (props: Props) => {
-  const { children, window, onChangeTheme } = props;
+  const { children, window, onChangeTheme, darkMode } = props;
   const userInfo = useRecoilValue(userInfoAtom);
   const isLoading = useRecoilValue(isLoadingAtom);
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
@@ -92,7 +94,7 @@ const Layout = (props: Props) => {
             </Box>
 
             <IconButton onClick={onChangeTheme} color="inherit" className="mr-0 ml-auto">
-              <DarkModeOutlinedIcon />
+              {darkMode ? <LightModeOutlinedIcon /> : <DarkModeOutlinedIcon />}
             </IconButton>
           </Toolbar>
         </AppBar>

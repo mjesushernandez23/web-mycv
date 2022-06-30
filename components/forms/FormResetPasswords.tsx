@@ -10,7 +10,7 @@ interface ResetPasswordProps {
   code?: string;
 }
 
-const ResetPasswords = ({ code }: ResetPasswordProps) => {
+const FormResetPasswords = ({ code }: ResetPasswordProps) => {
   const { axiosSimple } = useAxios();
   const { handleLogin } = useAuth();
 
@@ -57,4 +57,4 @@ const ResetPasswords = ({ code }: ResetPasswordProps) => {
   );
 };
 
-export default ResetPasswords;
+export default FormResetPasswords;

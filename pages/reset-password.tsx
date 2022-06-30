@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
-import ResetPasswords from "@components/forms/ResetPasswords";
+import { Suspense, useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const FormResetPasswords = dynamic(() => import("@components/forms/FormResetPasswords"), {
+  suspense: true,
+});
 
 const ResetPassword: NextPage = () => {
   const [codeConfirmation, setCodeConfirmation] = useState<string | null>(null);
@@ -21,7 +25,9 @@ const ResetPassword: NextPage = () => {
       <Typography variant="h4" align="center">
         Nueva contraseña
       </Typography>
-      <ResetPasswords code={codeConfirmation} />
+      <Suspense>
+        <FormResetPasswords code={codeConfirmation} />
+      </Suspense>
     </div>
   );
 };
