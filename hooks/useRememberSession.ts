@@ -10,13 +10,11 @@ export default function useRememberSession(): void {
   /* eslint-disable */
   useEffect(() => {
     const token = getToken();
-
-    (async () => {
-      if (token) {
+    token &&
+      (async () => {
         const result = await userMeApi(token);
         setUserInfo(result);
-      }
-    })();
+      })();
   }, []);
   /* eslint-enable */
 }

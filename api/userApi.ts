@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { ErrorResponseErrorProps, UserInfoProps } from "@interfaces/api";
 import { API } from "@utils/constants";
 import { deleteToken } from "./localStorage";
