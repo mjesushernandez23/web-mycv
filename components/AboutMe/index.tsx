@@ -2,6 +2,7 @@ import MyImage from "@components/ui/MyImage";
 import { ResumeResponseProps } from "@interfaces/api";
 import styles from "./AboutMe.module.css";
 import Contact from "./Contact";
+import RichText from "./RichText";
 
 interface Props extends ResumeResponseProps {}
 
@@ -21,12 +22,15 @@ const AboutMe = (props: Props) => {
   } = props;
 
   return (
-    <div className="w-full flex flex-wrap">
-      <div className="w-1/3">
-        <div>
-          <MyImage image={photo} className="w-10 h-10" />
+    <div className={styles.container}>
+      <div className={styles.left_content}>
+        <div className={styles.cont_image}>
+          <MyImage image={photo} className={styles.avatar} />
         </div>
-        <div>
+        <div className={styles.mask_gray} />
+        <div className={styles.mask_white} />
+        <div className={styles.mask_blue} />
+        <div className={styles.cont_skills}>
           <h2>{description}</h2>
           <div>{skills}</div>
         </div>
@@ -36,14 +40,14 @@ const AboutMe = (props: Props) => {
           ))}
         </address>
       </div>
-      <div className="w-2/3">
-        <h1>
+      <div className={styles.right_content}>
+        <h1 className={styles.title_name}>
           {firstName} {lastName}
         </h1>
         <h2>{position}</h2>
-        <hr />
-        <div>{workExperience}</div>
-        <div>{study}</div>
+        <hr className={styles.title_divisor} />
+        <pre>{workExperience}</pre>
+        <RichText text={study} className={styles.rich_text} />
         <div>{objective}</div>
         <div>{additional}</div>
       </div>
