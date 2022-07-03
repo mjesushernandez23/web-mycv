@@ -1,5 +1,6 @@
 import MyImage from "@components/ui/MyImage";
 import { ResumeResponseProps } from "@interfaces/api";
+import { style } from "@mui/system";
 import styles from "./AboutMe.module.css";
 import Contact from "./Contact";
 import RichText from "./RichText";
@@ -24,19 +25,21 @@ const AboutMe = (props: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.left_content}>
-        <div className={styles.cont_image}>
-          <MyImage image={photo} className={styles.avatar} />
-        </div>
         <div className={styles.mask_gray} />
         <div className={styles.mask_white} />
         <div className={styles.mask_blue} />
+        <div className={styles.cont_image}>
+          <MyImage image={photo} className={styles.avatar} />
+        </div>
+
         <div className={styles.cont_skills}>
-          <h2>{description}</h2>
+          <h2 className={styles.description}>{description}</h2>
           <div>{skills}</div>
         </div>
-        <address>
+        <address className={styles.cont_contact}>
+          <h3>Contacto</h3>
           {contact.map((item, index) => (
-            <Contact key={`list-contact${index}`} {...item} className="" />
+            <Contact key={`list-contact${index}`} {...item} className={styles.item_contact} />
           ))}
         </address>
       </div>

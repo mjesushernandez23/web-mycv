@@ -19,12 +19,12 @@ const Contact = ({ type, value, className }: Props) => {
   const selectType = contactOptions[type];
 
   return (
-    <li className={className}>
+    <div className={className}>
       <a href={`${selectType}${value}`} target="_blank" rel="noreferrer">
         <span>{selectType.icon}</span>
         {value}
       </a>
-    </li>
+    </div>
   );
 };
 
