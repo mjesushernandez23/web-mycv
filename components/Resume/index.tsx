@@ -7,12 +7,14 @@ interface Props {
   data: ResumeResponseProps;
 }
 
+const left_content_colors = "dark:bg-white bg-black dark:text-black text-white";
+
 const Resume = ({ data }: Props) => {
   const { firstName, lastName, position, contact, aboutMe, skills, workExperience, study } = data;
 
   return (
     <div className={styles.container}>
-      <div className={`text-white bg-black dark:bg-white ${styles.container_left}`}>
+      <div className={`${left_content_colors} ${styles.container_left}`}>
         <div className={styles.cont_title}>
           <h1>
             {firstName}
@@ -28,7 +30,7 @@ const Resume = ({ data }: Props) => {
           <ul className={styles.list_contact}>
             {contact.map((item, index) => (
               <li key={`list-contact-${index}`}>
-                <ContactLink className={styles.list_item} item={item} />
+                <ContactLink className={`${left_content_colors} ${styles.list_item}`} item={item} />
               </li>
             ))}
           </ul>

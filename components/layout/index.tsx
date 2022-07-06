@@ -131,7 +131,7 @@ const Layout = (props: Props) => {
             </Box>
           </Drawer>
         </Box>
-        <Box component="main" className="w-full">
+        <Box component="main" className={`w-full ${darkMode ? "dark" : ""}`}>
           <Toolbar />
           {children}
         </Box>
