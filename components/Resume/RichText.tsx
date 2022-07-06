@@ -1,11 +1,10 @@
-import ReactMarkdown, { Options } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 
-interface Props {
+interface RichTextProps {
   text: string;
   className: string;
 }
-
-const RichText = ({ text, className }: Props) => {
+const RichText = ({ text, className }: RichTextProps) => {
   return <ReactMarkdown className={className}>{text}</ReactMarkdown>;
 };
 

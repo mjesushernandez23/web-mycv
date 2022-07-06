@@ -1,7 +1,7 @@
 //libraries
 import { Suspense, useState } from "react";
 import { useRouter } from "next/router";
-import { Button, Icon, NoSsr } from "@mui/material";
+import { NoSsr } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { isLoadingAtom } from "@store/uiAtoms";
 import { userInfoAtom } from "@store/userAtoms";

@@ -3,8 +3,9 @@ import { Suspense, useState, useEffect, useCallback } from "react";
 import getMyCvApi from "@api/getMyCvApi";
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
-const AboutMe = dynamic(() => import("@components/AboutMe"), { suspense: true });
+const Resume = dynamic(() => import("@components/Resume"), { suspense: true });
 
 const About: NextPage = () => {
   const [data, setData] = useState<ResumeResponseProps | null>(null);
@@ -22,8 +23,11 @@ const About: NextPage = () => {
 
   return (
     <div>
+      <Head>
+        <title>Curriculum</title>
+      </Head>
       <Suspense>
-        <AboutMe {...data} />
+        <Resume data={data} />
       </Suspense>
     </div>
   );

@@ -4,6 +4,7 @@ const { indigo } = require("@mui/material/colors");
 
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       width: {
@@ -32,6 +33,7 @@ module.exports = {
     colors: {
       primary: indigo,
       white: "#fff",
+      black: "#000",
     },
   },
 
