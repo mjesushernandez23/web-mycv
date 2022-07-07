@@ -57,6 +57,9 @@ Roboto700= contactTittle,skillsTitle,listTitle
   font-family: "poppins";
   text-align: right;
 }
+.cont_contact {
+  width: 96%;
+}
 .cont_contact h3 {
   font-weight: 700;
   font-size: 3.022145971489904vw;
@@ -68,13 +71,26 @@ Roboto700= contactTittle,skillsTitle,listTitle
   width: 100%;
   height: fit-content;
 }
-.list_contact li {
-  line-height: 0.75;
-}
+
 .list_item {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+.list_item a {
   font-family: "poppins";
   font-size: 1.5104603905295757vw;
   text-decoration: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.list_item span {
+  display: flex;
+  margin-right: 0.5vw;
+}
+.list_item svg {
+  font-size: 2vw;
 }
 .container_right {
   width: 65.30700223%;
@@ -88,9 +104,20 @@ Roboto700= contactTittle,skillsTitle,listTitle
   align-items: center;
 }
 .container_right > div {
-  width: 73%;
+  width: 75%;
   height: fit-content;
 }
+.container_right .rich_text ul:nth-child(2){
+  margin-bottom: .5vw;
+}
+.container_right ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  font-family: "poppins";
+  font-size: 1.5103983610917484vw;
+}
+
 .container_right h3 {
   font-size: 3.022145971489904vw;
   font-family: "HKGrotesk";
@@ -101,14 +128,30 @@ Roboto700= contactTittle,skillsTitle,listTitle
   font-size: 1.5107291818189839vw;
   font-family: "poppins";
 }
-.rich_text ul {
-  padding-left: 5vw;
-  font-family: "poppins";
-  font-size: 1.5103983610917484vw;
-}
-.rich_text h3 {
+
+.rich_text h4 {
   font-size: 1.6782893891972226vw;
   font-family: "HKGrotesk";
+}
+
+.cont_skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cont_skills > h3 {
+  width: 100%;
+}
+.skills_item {
+  width: 30%;
+  font-size: 1.5103983610917484vw;
+}
+.skills_item h3 {
+  font-size: 1.6782893891972226vw;
+}
+
+.skills_item li {
+  line-height: 1.25;
 }
 
 @media (min-width: 600px) {

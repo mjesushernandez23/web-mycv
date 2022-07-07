@@ -5,6 +5,7 @@ import RichText from "./RichText";
 import usePrint from "@hooks/usePrint";
 import Fab from "@mui/material/Fab";
 import DownloadIcon from "@mui/icons-material/Download";
+import SkillsList from "./SkillsList";
 
 interface Props {
   data: ResumeResponseProps;
@@ -34,12 +35,11 @@ const Resume = ({ data }: Props) => {
             <h3>Contacto</h3>
             <ul className={styles.list_contact}>
               {contact.map((item, index) => (
-                <li key={`list-contact-${index}`}>
-                  <ContactLink
-                    className={`${left_content_colors} ${styles.list_item}`}
-                    item={item}
-                  />
-                </li>
+                <ContactLink
+                  classes={{ li: styles.list_item, link: left_content_colors }}
+                  item={item}
+                  key={`list-contact-${index}`}
+                />
               ))}
             </ul>
           </div>
@@ -49,9 +49,15 @@ const Resume = ({ data }: Props) => {
             <h3>Sobre mi</h3>
             <p>{aboutMe}</p>
           </div>
-          <div>
+          <div className={styles.cont_skills}>
             <h3>Habilidades</h3>
-            <RichText text={skills} className={styles.rich_text} />
+            {skills.map((skillList, index) => (
+              <SkillsList
+                key={`list-skill${index}`}
+                className={styles.skills_item}
+                {...skillList}
+              />
+            ))}
           </div>
           <div>
             <h3>Experiencia</h3>
@@ -64,7 +70,7 @@ const Resume = ({ data }: Props) => {
         </div>
       </div>
       <Fab onClick={() => handlePrint()} color="primary" className="fixed top">
-        <DownloadIcon/>
+        <DownloadIcon />
       </Fab>
     </div>
   );
