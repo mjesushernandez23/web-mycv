@@ -1,12 +1,3 @@
-/* 
-
-hk 700  = position,titles about|education|work
-
-
-poppins300= listContact,aboutText,listItem
-
-Roboto700= contactTittle,skillsTitle,listTitle
-*/
 @font-face {
   font-family: "HKGrotesk";
   src: url("/fonts/HKGrotesk-Bold.otf");
@@ -63,7 +54,7 @@ Roboto700= contactTittle,skillsTitle,listTitle
 .cont_contact h3 {
   font-weight: 700;
   font-size: 3.022145971489904vw;
-  text-align: center;
+  line-height: 3;
 }
 .list_contact {
   list-style: none;
@@ -107,8 +98,8 @@ Roboto700= contactTittle,skillsTitle,listTitle
   width: 75%;
   height: fit-content;
 }
-.container_right .rich_text ul:nth-child(2){
-  margin-bottom: .5vw;
+.container_right .rich_text ul:nth-child(2) {
+  margin-bottom: 0.5vw;
 }
 .container_right ul {
   list-style: none;
@@ -159,5 +150,49 @@ Roboto700= contactTittle,skillsTitle,listTitle
     margin: auto;
     max-width: 793.333px;
     height: 1122.057px;
+    box-shadow: 1px 8px 22px 0px rgba(0, 0, 0, 0.58);
+  }
+  .container_left {
+    padding-bottom: 50px;
+  }
+  .cont_title {
+    margin-top: 175px;
+  }
+  .cont_title h1 {
+    font-size: 44.08378983px;
+  }
+  .cont_title h2 {
+    font-size: 22.0381279px;
+  }
+  .cont_contact h3 {
+    font-size: 23.9756813px;
+  }
+  .list_item a {
+    font-size: 11.98298073px;
+  }
+  .list_item span {
+    margin-right: 7px;
+  }
+  .list_item svg {
+    font-size: 15px;
+  }
+  .container_right {
+    padding: 50px 0;
+  }
+  .container_right h3 {
+    font-size: 23.9756813px;
+  }
+  .container_right p {
+    font-size: 11.98511314px;
+  }
+  .container_right ul {
+    font-size: 11.98248863px;
+  }
+  .rich_text h4,
+  .skills_item h3 {
+    font-size: 13.31442356px;
+  }
+  .container_right .rich_text ul:nth-child(2) {
+    margin-bottom: 10px;
   }
 }

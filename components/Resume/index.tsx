@@ -3,8 +3,6 @@ import ContactLink from "./ContactLink";
 import styles from "./Resume.module.css";
 import RichText from "./RichText";
 import usePrint from "@hooks/usePrint";
-import Fab from "@mui/material/Fab";
-import DownloadIcon from "@mui/icons-material/Download";
 import SkillsList from "./SkillsList";
 
 interface Props {
@@ -18,60 +16,51 @@ const Resume = ({ data }: Props) => {
   const { firstName, lastName, position, contact, aboutMe, skills, workExperience, study } = data;
   const { nodeRef, handlePrint } = usePrint("Martín De Jesús Leaños Hernández");
   return (
-    <div>
-      <div ref={nodeRef} className={styles.container}>
-        <div className={`${left_content_colors} ${styles.container_left}`}>
-          <div className={styles.cont_title}>
-            <h1>
-              {firstName}
-              <br /> {lastName}
-            </h1>
-            <h2>
-              <br />
-              {position}
-            </h2>
-          </div>
-          <div className={styles.cont_contact}>
-            <h3>Contacto</h3>
-            <ul className={styles.list_contact}>
-              {contact.map((item, index) => (
-                <ContactLink
-                  classes={{ li: styles.list_item, link: left_content_colors }}
-                  item={item}
-                  key={`list-contact-${index}`}
-                />
-              ))}
-            </ul>
-          </div>
+    <div ref={nodeRef} className={styles.container}>
+      <div className={`${left_content_colors} ${styles.container_left}`}>
+        <div className={styles.cont_title}>
+          <h1>
+            {firstName}
+            <br /> {lastName}
+          </h1>
+          <h2>
+            <br />
+            {position}
+          </h2>
         </div>
-        <div className={`${right_content_colors} ${styles.container_right}`}>
-          <div>
-            <h3>Sobre mi</h3>
-            <p>{aboutMe}</p>
-          </div>
-          <div className={styles.cont_skills}>
-            <h3>Habilidades</h3>
-            {skills.map((skillList, index) => (
-              <SkillsList
-                key={`list-skill${index}`}
-                className={styles.skills_item}
-                {...skillList}
+        <div className={styles.cont_contact}>
+          <h3>Contacto</h3>
+          <ul className={styles.list_contact}>
+            {contact.map((item, index) => (
+              <ContactLink
+                classes={{ li: styles.list_item, link: left_content_colors }}
+                item={item}
+                key={`list-contact-${index}`}
               />
             ))}
-          </div>
-          <div>
-            <h3>Experiencia</h3>
-            <RichText text={workExperience} className={styles.rich_text} />
-          </div>
-          <div>
-            <h3>Estudios</h3>
-            <RichText text={study} className={styles.rich_text} />
-          </div>
+          </ul>
         </div>
       </div>
-      <Fab onClick={() => handlePrint()} color="primary" className="fixed top">
-        <DownloadIcon />
-      </Fab>
+      <div className={`${right_content_colors} ${styles.container_right}`}>
+        <div>
+          <h3>Sobre mi</h3>
+          <p>{aboutMe}</p>
+        </div>
+        <div className={styles.cont_skills}>
+          <h3>Habilidades</h3>
+          {skills.map((skillList, index) => (
+            <SkillsList key={`list-skill${index}`} className={styles.skills_item} {...skillList} />
+          ))}
+        </div>
+        <div>
+          <h3>Experiencia</h3>
+          <RichText text={workExperience} className={styles.rich_text} />
+        </div>
+        <div>
+          <h3>Estudios</h3>
+          <RichText text={study} className={styles.rich_text} />
+        </div>
+      </div>
     </div>
   );
 };
