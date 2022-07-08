@@ -18,3 +18,10 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## The project is built with the following technologies
+-Typescript
+-NextJs
+-RecoilJs
+-Material UI
+-TailwindCss
