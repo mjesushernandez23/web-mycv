@@ -1,8 +1,10 @@
 import axios from "axios";
 import { ErrorResponseErrorProps, UserInfoProps } from "@interfaces/api";
 import { API } from "@utils/constants";
-import { deleteToken } from "./localStorage";
-export async function userMeApi(token: string): Promise<UserInfoProps | null> {
+import { deleteToken, getToken } from "./localStorage";
+export async function userMeApi(): Promise<UserInfoProps | null> {
+  const token = getToken();
+  if (!token) return null;
   const url = `${API}/users/me`;
   try {
     const { data } = await axios({

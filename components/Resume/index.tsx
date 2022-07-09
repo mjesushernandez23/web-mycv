@@ -2,7 +2,6 @@ import { ResumeResponseProps } from "@utils/interfaces/api";
 import ContactLink from "./ContactLink";
 import styles from "./Resume.module.css";
 import RichText from "./RichText";
-import usePrint from "@hooks/usePrint";
 import SkillsList from "./SkillsList";
 
 interface Props {
@@ -14,9 +13,9 @@ const right_content_colors = "dark:bg-black bg-white dark:text-white text-black"
 
 const Resume = ({ data }: Props) => {
   const { firstName, lastName, position, contact, aboutMe, skills, workExperience, study } = data;
-  const { nodeRef, handlePrint } = usePrint("Martín De Jesús Leaños Hernández");
+
   return (
-    <div ref={nodeRef} className={styles.container}>
+    <div className={styles.container}>
       <div className={`${left_content_colors} ${styles.container_left}`}>
         <div className={styles.cont_title}>
           <h1>

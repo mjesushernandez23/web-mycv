@@ -18,7 +18,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 //hooks
-import useRememberSession from "@hooks/useRememberSession";
+import useTurnOnServer from "@hooks/useTurnOnServer";
 //icons
 import HomeIcon from "@mui/icons-material/Home";
 import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
@@ -53,7 +53,7 @@ const Layout = (props: Props) => {
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
 
   const { pathname } = useRouter();
-  useRememberSession();
+  useTurnOnServer();
 
   const handleDrawerToggle = () => {
     setShowSideBar(prev => !prev);

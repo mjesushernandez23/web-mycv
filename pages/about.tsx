@@ -1,34 +1,21 @@
-import { ResumeResponseProps } from "@utils/interfaces/api";
-import { Suspense, useState, useEffect, useCallback } from "react";
-import getMyCvApi from "@api/getMyCvApi";
+import { Suspense } from "react";
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { useRecoilValue } from "recoil";
+import { resumeAtom } from "@store/resumeAtoms";
 
 const Resume = dynamic(() => import("@components/Resume"), { suspense: true });
 
 const About: NextPage = () => {
-  const [data, setData] = useState<ResumeResponseProps | null>(null);
-
-  const getResumeCb = useCallback(async () => {
-    const result = await getMyCvApi();
-    setData(result);
-  }, []);
-
-  useEffect(() => {
-    getResumeCb();
-  }, [getResumeCb]);
-
-  if (data === null) return <>Loading...</>;
-
+  const data = useRecoilValue(resumeAtom);
   return (
     <div>
       <Head>
         <title>Curriculum</title>
       </Head>
-      <Suspense>
-        <Resume data={data} />
-      </Suspense>
+
+      <Suspense>{data && <Resume data={data} />}</Suspense>
     </div>
   );
 };
