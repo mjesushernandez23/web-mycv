@@ -2,9 +2,9 @@ import { useFormik } from "formik";
 import { validationConferencieCreate } from "@utils/validations";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
 import MyInput from "@components/ui/MyInput";
 import MyUpload from "@components/ui/MyUpload";
+import useMyUpload from "@hooks/useMyUpload";
 
 import useAxios from "@hooks/useAxios";
 interface Props {
@@ -13,24 +13,24 @@ interface Props {
 
 const FormCreateConference = ({ _id }: Props) => {
   const { axiosSimple } = useAxios();
-  const { values, errors, handleChange, handleBlur, handleSubmit, setFieldValue, resetForm } =
-    useFormik({
-      ...validationConferencieCreate,
-      onSubmit: async values => {
-        const payload = {
-          users_permissions_user: _id,
-          time: values.time,
-        };
-        const result = await axiosSimple({
-          endPoint: "/conference-bookings",
-          method: "post",
-          payload,
-          messageSuccess: "Se ha creado una cita",
-          isAuth: true,
-        });
-        console.log(result);
-      },
-    });
+  const { handleSubmitMyUpload, handlesMyUpload, stateMyUpload } = useMyUpload();
+  const { values, errors, handleChange, handleBlur, handleSubmit, resetForm } = useFormik({
+    ...validationConferencieCreate,
+    onSubmit: async values => {
+      const files = await handleSubmitMyUpload();
+      const payload = {
+        users_permissions_user: _id,
+        time: values.time,
+      };
+      /* const result = await axiosSimple({
+        endPoint: "/conference-bookings",
+        method: "post",
+        payload,
+        messageSuccess: "Se ha creado una cita",
+        isAuth: true,
+      }); */
+    },
+  });
 
   return (
     <>
@@ -69,20 +69,15 @@ const FormCreateConference = ({ _id }: Props) => {
           Enviar
         </Button>
       </form>
-      {/* <div className="w-1/2 flex justify-center mx-auto">
+      <div className="w-1/2 flex justify-center mx-auto">
         <MyUpload
-          label=""
+          handles={handlesMyUpload}
+          state={stateMyUpload}
           name="file"
-          accept={["zip", "rar", "pdf"]}
-          onUpload={files => {
-            setFieldValue("file", files);
-          }}
-          error={errors.file}
+          acceptFormat={["zip", "rar", "pdf"]}
           multiple
-          handleBlur={handleBlur}
-          icon={<UploadFileIcon />}
         />
-      </div> */}
+      </div>
     </>
   );
 };
