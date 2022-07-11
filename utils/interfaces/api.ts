@@ -67,6 +67,7 @@ export interface ResumeResponseProps {
   contact: ContactProps[];
   aboutMe: string;
   position: string;
+  avatar: ImagesProps;
 }
 
 export type ContactType = "email" | "tel" | "linkedin" | "repository";

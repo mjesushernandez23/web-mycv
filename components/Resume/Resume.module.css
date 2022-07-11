@@ -30,23 +30,32 @@
   align-content: center;
   justify-content: space-between;
   position: relative;
-  padding-bottom: 5vw;
+  padding: 5vw 0;
+}
+.avatar {
+  margin-top: 1vw;
+  width: 80%;
+  height: 20.94%;
+  border-radius: 999px;
+  overflow: hidden;
 }
 .cont_title {
-  transform: rotateZ(270deg);
   white-space: nowrap;
   line-height: 1;
-  margin-top: 20vw;
+  margin-top: 4vw;
+  margin-bottom: auto;
 }
 .cont_title h1 {
-  font-size: 5.55678256545486vw;
+  font-size: 4vw;
   font-family: "HK";
-  text-align: right;
+
 }
 .cont_title h2 {
-  font-size: 2.7779164487043904vw;
+  font-size: 2vw;
   font-family: "poppins";
-  text-align: right;
+  
+  
+  
 }
 .cont_contact {
   width: 96%;

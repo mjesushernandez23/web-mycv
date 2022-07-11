@@ -1,3 +1,4 @@
+import MyImage from "@components/ui/MyImage";
 import { ResumeResponseProps } from "@utils/interfaces/api";
 import ContactLink from "./ContactLink";
 import styles from "./Resume.module.css";
@@ -12,11 +13,13 @@ const left_content_colors = "dark:bg-white bg-black dark:text-black text-white";
 const right_content_colors = "dark:bg-black bg-white dark:text-white text-black";
 
 const Resume = ({ data }: Props) => {
-  const { firstName, lastName, position, contact, aboutMe, skills, workExperience, study } = data;
+  const { firstName, lastName, position, contact, aboutMe, skills, workExperience, study, avatar } =
+    data;
 
   return (
     <div className={styles.container}>
       <div className={`${left_content_colors} ${styles.container_left}`}>
+        <MyImage image={avatar} className={styles.avatar} />
         <div className={styles.cont_title}>
           <h1>
             {firstName}

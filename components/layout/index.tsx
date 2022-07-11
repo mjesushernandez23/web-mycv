@@ -26,6 +26,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import PersonIcon from "@mui/icons-material/Person";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import useResizeScreen from "@hooks/useResizeScreen";
 
 const Loading = dynamic(() => import("./Loading"), {
   ssr: false,
@@ -52,8 +53,10 @@ const Layout = (props: Props) => {
   const isLoading = useRecoilValue(isLoadingAtom);
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
 
+
   const { pathname } = useRouter();
   useTurnOnServer();
+  useResizeScreen()
 
   const handleDrawerToggle = () => {
     setShowSideBar(prev => !prev);
